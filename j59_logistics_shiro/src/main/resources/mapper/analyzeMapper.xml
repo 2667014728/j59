@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.java.dao.analyzeMapper">
+
+    <select id="selectjt" resultType="map">
+          SELECT *  FROM orders  WHERE  DATE_FORMAT(od_date, '%X%j')=DATE_FORMAT(NOW(), '%X%j')
+    </select>
+    <select id="selectyz" resultType="map">
+        SELECT *  FROM orders  WHERE  DATE_FORMAT(od_date, '%X%V')=DATE_FORMAT(NOW(), '%X%V')
+    </select>
+
+    <select id="selectkh" resultType="map">
+            SELECT * FROM  customer
+    </select>
+
+</mapper>

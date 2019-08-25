@@ -1,0 +1,18 @@
+server:
+  port: 8300
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+spring:
+  application:
+    name: config-service
+  cloud:
+    config:
+      discovery:
+        enabled: true #
+      server:
+        git:
+          uri: https://gitee.com/dengyaowei/J59_config_2
+          username: dengyaowei
+          password: DENGyaowei6541

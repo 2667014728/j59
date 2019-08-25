@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/J59_log.iml" filepath="$PROJECT_DIR$/.idea/J59_log.iml" />
+      <module fileurl="file://$PROJECT_DIR$/j59_logistics_eureka/j59_logistics_eureka.iml" filepath="$PROJECT_DIR$/j59_logistics_eureka/j59_logistics_eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/j59_logistics_gateway/j59_logistics_gateway.iml" filepath="$PROJECT_DIR$/j59_logistics_gateway/j59_logistics_gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/j59_logistics_shiro/j59_logistics_shiro.iml" filepath="$PROJECT_DIR$/j59_logistics_shiro/j59_logistics_shiro.iml" />
+      <module fileurl="file://$PROJECT_DIR$/j59_logostics_config/j59_logostics_config.iml" filepath="$PROJECT_DIR$/j59_logostics_config/j59_logostics_config.iml" />
+    </modules>
+  </component>
+</project>

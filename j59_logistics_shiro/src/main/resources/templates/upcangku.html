@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>晶科物流管理系统</title>
+    <link rel="stylesheet" th:href="@{'/css/bootstrap.css'}"/>
+    <link rel="stylesheet" th:href="@{'/css/css.css'}"/>
+    <script type="text/javascript" th:src="@{'/js/jquery1.9.0.min.js'}"></script>
+    <script type="text/javascript" th:src="@{'/js/bootstrap.min.js'}"></script>
+    <script type="text/javascript" th:src="@{'/js/sdmenu.js'}"></script>
+    <script type="text/javascript" th:src="@{'/js/laydate/laydate.js'}"></script>
+
+    <style type="text/css">
+        table td{
+            height: 42px;
+        }
+
+        a:hover {
+            cursor: pointer;
+        }
+        input{
+            width: 500px;
+            height: 35px;
+        }
+        select{
+            font-size: 17px;
+            height: 32px;
+            width: 510px;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">
+        修改员工资料
+    </h3>
+</div>
+<form class="form-horizontal" role="form" method="post" th:action="@{'/updatecang'}">
+
+    <div class="modal-body" style="width:1300px; margin:auto">
+        <table  >
+            <tbody>
+            <tr>
+                <td align="right">员工编号(不可修改):</td>
+                <td align="left"><input name="user_id"  readonly type="text" th:value="${m.user_id}"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td align="right">员工名称:</td>
+                <td align="left"><input name="user_department"  type="text" th:value="${m.user_department}"/>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">账号名:</td>
+                <td align="left">
+                    <input name="user_name"  type="text" th:value="${m.user_name}"/>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">职位:</td>
+                <td align="left">
+                <select id="rid" name="rid" th:value="${m.rid}">
+                    <option value="2">仓管员</option>
+                    <option value="3">中心总管</option>
+                    <option value="4">快递员</option>
+                    <option value="5">高管</option>
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">所属中心</td>
+                <td align="left">
+                    <select id="logcen_id" name="logcen_id" th:value="${m.logcen_id}">
+                        <option value="1">武汉分拨中心</option>
+                        <option value="2">武昌分拨中心</option>
+                        <option value="3">汉口分拨中心</option>
+                    </select>
+                </td>
+            </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <input type="submit" class="btn btn-success" style="width:80px" value="提交" onclick="javascript:return confirm('确认修改吗？');"/>
+        <button class="btn btn-default" data-dismiss="modal" aria-hidden="true" style="width:80px">取消
+        </button>
+    </div>
+    </div>
+
+</form>
+</body>
+</html>

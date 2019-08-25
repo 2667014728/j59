@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.java.dao.warehouseMapper">
+    <select id="findAll" resultType="map">
+        SELECT * FROM userinfo u1 ,userrole u3,user_role u4
+            WHERE u1.user_id=u4.userId
+            AND u4.userrole=u3.rid
+            ORDER BY user_id limit #{start},#{size}
+    </select>
+
+    <select id="getCount" resultType="int">
+        select count(*) from userinfo u1 ,userrole u3,user_role u4
+            WHERE u1.user_id=u4.userId
+            AND u4.userrole=u3.rid
+            <foreach collection="">
+
+            </foreach>
+    </select>
+
+    <select id="findById" resultType="map" >
+           SELECT * FROM userinfo u1 ,userrole u3,user_role u4
+            WHERE u1.user_id=u4.userId
+            AND u4.userrole=u3.rid
+            AND u1.user_id= #{user_id}
+    </select>
+
+    <insert id="CreatedWarehouse" parameterType="map" useGeneratedKeys="true" keyProperty="user_id">
+        insert into  userinfo values(null ,#{user_name},#{user_pwd},#{user_department},#{logcen_id})
+    </insert>
+
+    <insert id="addrole" parameterType="map">
+        insert into  user_role values(#{user_id},#{rid})
+    </insert>
+
+
+    <update id="update" parameterType="map">
+        update userinfo set user_name=#{user_name},user_department=#{user_department},logcen_id=#{logcen_id} where user_id=#{user_id}
+    </update>
+
+
+    <update id="updaterole" parameterType="map">
+        update user_role set userrole=#{rid} where userId=#{user_id}
+    </update>
+
+    <delete id="del" >
+    delete from userinfo where user_id=#{user_id}
+    </delete>
+
+    <delete id="delrole" >
+    delete from user_role where userId=#{user_id}
+    </delete>
+</mapper>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" >
+<head>
+    <meta charset="UTF-8">
+    <title>人事管理</title>
+    <link rel="stylesheet" th:href="@{'/css/bootstrap.css'}" />
+    <link rel="stylesheet"   th:href="@{'/css/css.css'}"  />
+    <script type="text/javascript" th:src="@{'/js/jquery1.9.0.min.js'}"></script>
+    <script type="text/javascript" th:src="@{'/js/bootstrap.min.js'}"></script>
+    <script type="text/javascript" th:src="@{'/js/sdmenu.js'}"></script>
+    <script type="text/javascript" th:src="@{'/js/laydate/laydate.js'}"></script>
+    <script type="text/javascript"  th:src="@{'/js/DepartmentList.js'}"  ></script>
+    <style type="text/css">
+        .cangku{
+            /*border: 1px solid red;*/
+            float: left;
+            margin-left: 90px;
+            height: 200px;
+            width: 300px;
+            margin-top: 80px;
+            margin-bottom: 100px;
+        }
+        .im2{
+            height: 200px;
+            width: 300px;
+        }
+
+
+
+    </style>
+
+    <style type="text/css">
+        tbody td {
+            height: 35px;
+        }
+
+        select {
+            height: 28px;
+        }
+
+        .pages {
+            display: inline-block;
+            width: 100px;
+            height: 30px;
+            color: white;
+            background: #149bdf;
+            border-radius: 3px;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        a:hover {
+            cursor: pointer;
+        }
+
+        .pages:hover {
+            color: white;
+            background: #0e90d2;
+        }
+    </style>
+</head>
+<body>
+<div class="right" id="mainFrame">
+
+    <div class="right_cont">
+        <ul class="breadcrumb">当前位置：
+            <a href="#">首页</a> <span class="divider">/</span>
+            <a href="#">物流中心管理</a> <span class="divider">/</span>
+            人事管理
+        </ul>
+
+        <div class="title_right"><span class="pull-right margin-bottom-5"><a class="btn btn-info btn-small"
+                                                                             id="modal-9735581"
+                                                                             href="#modal-container-9735581"
+                                                                             role="button" data-toggle="modal"><i
+                class="icon-plus icon-white"></i> 添加公告</a></span><strong>公告管理</strong></div>
+
+
+
+        <table class="table"  >
+            <tbody id="t1" >
+            <tr>
+                <td>罚款id:</td>
+                <td>罚款原因:</td>
+                <td>罚款人:</td>
+                <td>罚款金额:</td>
+                <td>操作</td>
+            </tr>
+
+            <tr  th:each="m,st:${list}">
+
+
+                    <td> <b style="font-size: 15px">[[${m.fid}]]</b></td>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                    <td><b style="font-size: 15px">[[${m.fname}]]</b></td>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                    <td>    <b style="font-size: 15px">[[${m.uname}]]</b></td>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                    <td>   <b style=" font-size: 15px">[[${m.fje}]]</b></td>
+
+
+                    <td><a th:href="@{|/upcangkuf/${m.fid}|}">编辑罚款</a>&nbsp;&nbsp;
+                    <a shiro:hasPermission="user:del"  th:href="@{|/delcangf/${m.fid}|}" onclick="javascript:return confirm('删除后无法恢复,确认吗？');">删除罚款</a>
+                    </td>
+
+            </tr>
+
+
+            <div style="margin-top: 50px">
+                <Tr align="center">
+                    <TD colspan="8">
+                            <span th:if="${page eq 1}">
+                                <a class="pages" disabled="false"
+                                   style="text-decoration: none;background: #7ab5d3;cursor: not-allowed;">首页</a><a class="pages"
+                                                                                                                   disabled="false"
+                                                                                                                   style="cursor: not-allowed;text-decoration : none;background: #7ab5d3;">上一页</a>
+
+                            </span>
+                        <span th:if="${page gt 1}">
+                        <a th:href="@{'/loadware/1'}"  class="pages" style="text-decoration : none;">首页</a>
+                        <a th:href="@{|/loadware/${page-1}|}" class="pages" style="text-decoration : none;">上一页</a>
+                    </span>
+                        <select th:onchange="location.href='/loadwaren/'+this.value" style="width: 65px">
+                            <div th:each="k:${#numbers.sequence(1,maxPage)}">
+                                <option th:value="${k}" th:attr="selected=${k==page?true:false}">第[[${k}]]页</option>
+                            </div>
+                        </select>
+                        <span th:if="${page eq maxPage}">
+                               <a class="pages" disabled="false"
+                                  style="cursor: not-allowed;text-decoration : none;background: #7ab5d3;">下一页</a><a
+                                class="pages" disabled="false"
+                                style="cursor: not-allowed;text-decoration : none;background: #7ab5d3;">尾页</a>
+
+                            </span>
+                        <span th:if="${page lt maxPage}">
+                        <a th:href="@{|/loadware/${page+1}|}" class="pages" style="text-decoration : none;">下一页</a>
+                        <a th:href="@{|/loadware/${maxPage}|}" class="pages" style="text-decoration : none;">尾页</a>
+                    </span>
+                        共<b>[[${count}]]</b>条
+                        每页<b>[[${size}]]</b>条
+                        共<b>[[${maxPage}]]</b>页
+
+                    </TD>
+                </Tr>
+
+
+            </div>
+
+
+
+
+            </tbody>
+        </table>
+
+
+
+
+
+
+
+
+
+
+        <div id="modal-container-9735581" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true" style="width:600px; margin-left:-300px; top:20%">
+            <form method="get" th:action="@{addf}">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 id="myModalLabel">
+                        添加公告
+                    </h3>
+                </div>
+                <!--弹出层-->
+                <div class="modal-body" >
+
+                    <table class="table table-bordered">
+                        <tbody>
+
+                        <tr>
+                            <td align="right">标题:</td>
+                            <td align="left"><input name="nbt" type="text" id="endTextBox" class="span1-1"/>
+                                [*]
+                            </td>
+
+
+
+
+                        </tr>
+                        <tr>
+                            <td align="right">内容:</td>
+                            <td>
+                                <textarea class="form-control"  name="nlr">
+                                    </textarea>
+
+                            </td>
+
+
+
+                        </tr>
+                        <tr>
+
+                            <td align="right">发布人:[[${session.usera.user_name }]]</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+
+                </div>
+
+                <div class="modal-footer">
+                    <input type="submit" value="保存" class="btn btn-info"  aria-hidden="true" style="width:80px"/>
+                    <button class="btn btn-info" data-dismiss="modal" aria-hidden="true" style="width:80px">取消</button>
+                </div>
+            </form>
+        </div>
+
+
+
+
+
+
+
+<script>
+    !function () {
+        laydate.skin('molv');
+        laydate({elem: '#Calendar'});
+    }();
+
+</script>
+ </body>
+</html>

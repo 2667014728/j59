@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.java.dao.InfoMapper">
+
+    <select id="dl" resultType="map">
+      SELECT * FROM userinfo u1 ,userrole u3,user_role u4
+            WHERE u1.user_id=u4.userId
+            AND u4.userrole=u3.rid
+            AND u1.user_name= #{username}
+    </select>
+    <select id="selectqx" resultType="map">
+
+            SELECT * FROM userpermissions u1 ,role_permissions u2,userrole u3
+                WHERE u3.rid=u2.roleId
+                AND u1.aid=u2.PermissionsId
+                AND u3.rid=#{rid}
+    </select>
+
+</mapper>

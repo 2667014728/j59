@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.java.dao.fineMapper">
+    <select id="findAll" resultType="map">
+        SELECT * FROM fine
+    </select>
+
+    <select id="getCount" resultType="int">
+        select count(*) from fine
+    </select>
+
+    <select id="findById" resultType="map" >
+           SELECT * FROM fine where fid=#{fid}
+    </select>
+
+    <insert id="CreatedWarehouse" parameterType="map" >
+        insert into  fine values(null ,#{fname},#{uname},#{uid},#{fje})
+    </insert>
+
+
+
+    <update id="update" parameterType="map">
+        update fine set fname=#{fname},fje=#{fje}
+        where fid=#{fid}
+    </update>
+
+
+
+    <delete id="del" >
+    delete from fine where fid=#{fid}
+    </delete>
+
+</mapper>
