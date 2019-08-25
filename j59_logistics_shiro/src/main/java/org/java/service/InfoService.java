@@ -31,7 +31,7 @@ public class InfoService {
         RedisSerializer redisSerializer = new StringRedisSerializer();
         redisTemplate.setKeySerializer(redisSerializer);
          Map<String,Object> user = (Map<String, Object>) redisTemplate.opsForHash().get(username,"dl" );
-
+aaaaa
 
 
        if(user==null){
